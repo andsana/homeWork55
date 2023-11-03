@@ -1,7 +1,10 @@
 import {useState} from 'react';
+import IngredientButtons from './components/IngredientButtons/IngredientButtons';
+import Burger from './components/Burger/Burger';
+import {INGREDIENTS} from './Constant/ingredients';
 import type {Character} from './types';
 import './App.css';
-import IngredientButtons from './components/IngredientButtons';
+
 
 function App() {
   const [ingredients, setIngredients] = useState<Character[]>([
@@ -12,7 +15,6 @@ function App() {
   ]);
 
   const addIngredient = (index: number) => {
-
     setIngredients((prevState) => prevState.map((ingredient, i) => {
       if (i === index) {
         return {...ingredient, count: ingredient.count + 1};
@@ -36,16 +38,34 @@ function App() {
     removeIngredient={removeIngredient}
   />;
 
+  const calculateBurgerPrice = () => {
+    const baseBurgerPrice = 30;
+    const ingredientsPrice = INGREDIENTS.reduce((acc, INGREDIENT) => {
+      const selectedIngredient = ingredients.find((ingredient) => ingredient.name === INGREDIENT.name);
+      const countIngredient = selectedIngredient ? selectedIngredient.count : 0;
+      return acc + countIngredient * INGREDIENT.price;
+    }, 0);
+    return baseBurgerPrice + ingredientsPrice;
+  };
+
   return (
-    <>
-      <div>
+    <div className="app">
+      <div className="col-left">
         <h3>Ingredients:</h3>
-        <div className="ingredients">
+        <div className="ingredients-wrapper">
           {ingredientButtonsList}
         </div>
       </div>
-    </>
+      <div className="col-right">
+        <h3>Burger:</h3>
+        <div className="burger-wrapper">
+          <Burger ingredients={ingredients}/>
+          <p>Price: {calculateBurgerPrice()}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default App;
+

@@ -5,7 +5,13 @@
   text-align: center;
 }
 
-.ingredients {
+.app {
+  display: flex;
+  gap: 20px
+}
+
+.ingredients-wrapper,
+.burger-wrapper {
   border: 1px solid black;
   padding: 20px;
 }

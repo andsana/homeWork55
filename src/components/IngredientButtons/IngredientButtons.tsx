@@ -1,6 +1,6 @@
 import React from 'react';
-import { INGREDIENTS } from '../ingredients';
-import { Character } from '../types';
+import {INGREDIENTS} from '../../Constant/ingredients';
+import {Character} from '../../types';
 
 interface Props {
   ingredients: Character[];
