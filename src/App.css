@@ -5,3 +5,16 @@
   text-align: center;
 }
 
+.ingredients {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.add-ingredient {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+  justify-content: space-between;
+}
+
